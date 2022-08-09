@@ -1,1 +1,1 @@
-analytics_vidhya_hackatho solutions
+analytics vidhya hackathon solutions
