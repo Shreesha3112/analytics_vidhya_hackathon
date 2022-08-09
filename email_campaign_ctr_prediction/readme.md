@@ -5,6 +5,8 @@
 It is a regression problem where we have to predict the CTR(Click Through Rate) for email campaigns
 and therefore identify the critical factors that will help the marketing team to maximize the CTR.
 
+## Notebook link
+[google colab - analytics_vidhya_jobathon-email_campaign_ctr_predictions](https://colab.research.google.com/drive/1pYZVfhAkqeGacAaaB51ui5CnDJxmhF6A?usp=sharing)
 ## Data cleaning
 
 #### Drop columns
