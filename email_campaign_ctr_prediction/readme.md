@@ -1,11 +1,11 @@
 ## Analytics Vidhya Jobathon
 
-### Problem Statement:
+## Problem Statement:
 
 It is a regression problem where we have to predict the CTR(Click Through Rate) for email campaigns
 and therefore identify the critical factors that will help the marketing team to maximize the CTR.
 
-### Data cleaning
+## Data cleaning
 
 #### Drop columns
 
@@ -26,7 +26,7 @@ column is Boolean.
 * number_of_qoutes, is_qoute
 * number_of_emoticons, is_emoticons
 
-### Feature engineering
+## Feature engineering
 
 Key features using recursive feature elimination
 * categorical features:
@@ -52,7 +52,7 @@ Ex: df.groupby(['category,'product']['body_len'].mean())
     
 ##### Further features were not added since the model was already overfitting.
 
-### Data transformation
+## Data transformation
 
 [Reversible Data Transforms](https://docs.sdv.dev/rdt) library is used for categorical encoding and data transformation. It
 supports
@@ -64,22 +64,24 @@ supports
 
 ##### Target transformation was also tried using lognormal, box-cox, and square root. Significant performance improvement was not observed.
 
-### Feature Selection
+## Feature Selection
 
 Feature selection is performed using Recursive Feature Elimination. Selected features are</br>
 [sender, subject_len, body_len, mean_paragraph_len, day_of_week, is_weekend,
 times_of_day,category, product, no_of_CTA, mean_CTA_len, is_personalised, is_quote,
 target_audience, num_qoutes]
 
-### Modeling
+## Modeling
 #### Model selection logic
+
+![Model selection flowchart](images/model_selection_flowchart.jpg)
 
 Since the click rate distribution is closer to the Poisson distribution, the Objective function of the
 XGBoost model was set Tweedie Regression with tweedie_variance_power 1. However, this did not
 make any significant improvement.
 Reference: [XGBoost Parameters for Tweedie Regression](https://xgboost.readthedocs.io/en/stable/parameter.html#parameters-for-tweedie-regression-objective-reg-tweedie)
 
-### Train, validation, and test strategy
+## Train, validation, and test strategy
 
 Since the dataset is small with 1888 data points,
 * Use hold out only for testing on unseen data.
@@ -87,13 +89,15 @@ Since the dataset is small with 1888 data points,
 * Will not be able to use early stopping as a result of no validation dataset
 * 80% train and 20% test
 
-### Model performance analysis
+## Model performance analysis
 Added code to check model performance analysis per feature or combined features.
 Ex: Model performance based on times_of_day
 
+![Model analysis by time_of_day](images/model_analysis_by_time_of_Day.png)
+
 The model performs decently when times_of_day is morning and poorly when it is evening
 
-### Improvements
+## Improvements
 
 The testing strategy was not correct. It was hard to conclude whether specific feature engineering or
 transformation improved the model. Maybe instead of using a hold-out set, a complete dataset for
